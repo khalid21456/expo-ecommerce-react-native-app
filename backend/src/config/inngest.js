@@ -6,7 +6,7 @@ const { User } = require("../models/user.model.js");
 // Create a client to send and receive events
 const inngest = new Inngest({ id: "ecommerce-app" });
 
-exports.syncUser = inngest.createFunction(
+const syncUser = inngest.createFunction(
     {id:"sync-user"},
     {event:"clerk/user.created"},
     async({event}) => {
@@ -24,7 +24,7 @@ exports.syncUser = inngest.createFunction(
     }
 )
 
-exports.deleteUserFromDB = inngest.createFunction(
+const deleteUserFromDB = inngest.createFunction(
     {id:"delete-user-from-db"},
     {event:"clerk/user.deleted"},
     async({event}) => {

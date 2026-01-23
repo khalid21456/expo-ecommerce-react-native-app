@@ -4,14 +4,24 @@ const {connectDB} = require("./config/db.js");
 const ENV = require("./config/env.js");
 const {serve} = require("inngest/express")
 const {functions,inngest} = require("./config/inngest.js")
+const path = require("path")
+const {clerkMiddleware} = require("@clerk/express")
+const clerkRouter = require("./routes/Clerk.route.js")
+const adminRouter = require("./routes/admin.route.js")
 
-const {clerkMiddleware} = reaquire("@clerk/express")
-
+// express app
 const app = express();
 
+
+//Middlewares
 app.use(express.json());
+//app.use("/api/inngest", serve({ client: inngest, functions }));
 app.use(clerkMiddleware()) // adds auth object under the req => req.auth
-app.use("/api/inngest", serve({ client: inngest, functions }));
+
+
+// routes
+app.use("/api",clerkRouter);
+app.use("/api/admin",adminRouter)
 
 const dirname = path.resolve()
 app.get("/",(req,res)=> {
