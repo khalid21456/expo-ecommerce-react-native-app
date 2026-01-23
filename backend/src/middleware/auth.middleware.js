@@ -19,11 +19,20 @@ const protectRoute = [
     }
 ]
 
-const adminOnly = (req,res.next) => {
+const adminOnly = (req,res,next) => {
     try {
-        if(req.user.email != ENV.ADMIN_EMAIL)
+        if(!req.user) {
+            return res.status(401).json({message:"Unauthorized - invalid token"})
+        }
+
+        if(req.user.email !== ENV.ADMIN_EMAIL) {
+            return res.statsu(403).json({message:"Forbidden - admin access only"})
+        }
+        next()
     }catch(error) {
         console.error(error)
         res.status(500).json({message:"Internal Server Error"})
     }
 }
+
+module.exports = {adminOnly,protectRoute}
