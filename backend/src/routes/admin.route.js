@@ -17,4 +17,8 @@ router.patch("/orders/:orderId/status", updateOrderStatus)
 router.get("customers",getAllCustomers)
 router.get("/stats", getDashboardStats)
 
+
+// PUT: Used for full resource replacement, updating the entire resource
+// PATCH: Used for partial resource updates, updating a specific part of the resource
+
 module.exports = router
