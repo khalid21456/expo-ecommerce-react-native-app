@@ -9,6 +9,8 @@ const {clerkMiddleware} = require("@clerk/express")
 const clerkRouter = require("./routes/Clerk.route.js")
 const adminRouter = require("./routes/admin.route.js")
 const userRouter = require("./routes/user.route.js")
+const orderRouter = require("./routes/order.route.js")
+
 // express app
 const app = express();
 
@@ -21,6 +23,7 @@ app.use(clerkMiddleware()) // adds auth object under the req => req.auth
 app.use("/api",clerkRouter);
 app.use("/api/admin",adminRouter)
 app.use("/api/users",userRouter)
+app.use("/api/orders",orderRouter)
 
 const dirname = path.resolve()
 app.get("/",(req,res)=> {

@@ -99,7 +99,8 @@ const getAddresses = async (req, res) => {
 // Get Wishlist
 const getWishlist = async (req, res) => {
   try {
-    res.status(200).json({ wishList: req.user.wishList });
+    const user = await User.findById(req.user._id).populate("wishlist");
+    res.status(200).json({ wishList: user.wishList });
   } catch (error) {
     console.log(error);
     res.status(500).json({
