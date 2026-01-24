@@ -12,12 +12,10 @@ const adminRouter = require("./routes/admin.route.js")
 // express app
 const app = express();
 
-
 //Middlewares
 app.use(express.json());
 //app.use("/api/inngest", serve({ client: inngest, functions }));
 app.use(clerkMiddleware()) // adds auth object under the req => req.auth
-
 
 // routes
 app.use("/api",clerkRouter);
@@ -28,11 +26,7 @@ app.get("/",(req,res)=> {
     res.status(200).json({message:"Good Job !"})
 })
 
-
-
-
 // make our app ready for deployment
-
 if(ENV.NODE_ENV === "production") {
     app.use(express.static(path.join(dirname,"..","admin","dist")))
     app.get("/{*any}",(req,res) => {
