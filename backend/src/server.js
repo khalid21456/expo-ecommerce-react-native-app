@@ -10,7 +10,8 @@ const clerkRouter = require("./routes/Clerk.route.js")
 const adminRouter = require("./routes/admin.route.js")
 const userRouter = require("./routes/user.route.js")
 const orderRouter = require("./routes/order.route.js")
-
+const reviewRouter = require("./routes/review.route.js")
+const productRouter = require("./routes/product.route.js")
 // express app
 const app = express();
 
@@ -24,6 +25,8 @@ app.use("/api",clerkRouter);
 app.use("/api/admin",adminRouter)
 app.use("/api/users",userRouter)
 app.use("/api/orders",orderRouter)
+app.use("/api/reviews",reviewRouter)
+app.use("/api/product",productRouter)
 
 const dirname = path.resolve()
 app.get("/",(req,res)=> {

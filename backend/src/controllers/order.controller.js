@@ -55,6 +55,7 @@ const getUserOrders = async (req, res) => {
     const orders = Order.find({ clerkId: user.clerkId })
       .populate("orderItems.product")
       .sort({ createdAt: -1 });
+      
     const orderIds = orders.map((order) => order._id);
     const reviews = await Review.find({ orderId: { $in: orderIds } });
     const reviewedOrderIds = new Set(
