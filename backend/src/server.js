@@ -2,8 +2,7 @@ const express = require("express")
 require("dotenv").config()
 const {connectDB} = require("./config/db.js");
 const ENV = require("./config/env.js");
-const {serve} = require("inngest/express")
-const {functions,inngest} = require("./config/inngest.js")
+const cors = require("cors")
 const path = require("path")
 const {clerkMiddleware} = require("@clerk/express")
 const clerkRouter = require("./routes/Clerk.route.js")
@@ -19,6 +18,12 @@ const app = express();
 
 //Middlewares
 app.use(express.json());
+app.use(
+  cors({
+    origin: "http://localhost:5173", // ❗ exact frontend origin
+    credentials: true,               // ❗ allow cookies / auth headers
+  })
+);
 //app.use("/api/inngest", serve({ client: inngest, functions }));
 app.use(clerkMiddleware()) // adds auth object under the req => req.auth
 

@@ -1,5 +1,5 @@
 const {requireAuth} = require("@clerk/express")
-const User = require("../models/user.model.js")
+const {User} = require("../models/user.model.js")
 const ENV = require("../config/env.js")
 
 const protectRoute = [
