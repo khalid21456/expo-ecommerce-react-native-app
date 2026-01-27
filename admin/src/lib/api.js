@@ -30,7 +30,7 @@ export const orderApi = {
 
 
 export const statsApi = {
-    getStats: async() => {
+    getDashboard: async() => {
         const {data} = axiosInstance.get("/admin/stats")
         return data
     }
