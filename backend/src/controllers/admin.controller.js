@@ -71,7 +71,7 @@ const getAllProducts = async (_, res) => {
     const products = await Product.find().sort({ createdAt: -1 });
     if (!products)
       return res.statsu(404).json({ message: "No products found" });
-    return res.status(200).json({ products });
+    return res.status(200).json(products);
   } catch (error) {
     console.error(error);
     res.status(500).json({
@@ -84,9 +84,10 @@ const getAllProducts = async (_, res) => {
 
 const updateProduct = async (req, res) => {
   try {
-    const id = req.params.id;
+    const {id} = req.params;
     const { name, description, price, stock, category } = req.body;
-    const product = await Product.findById({ id });
+    const product = await Product.findById(id);
+    console.log(product)
     if (!product)
       return res
         .status(404)
@@ -255,5 +256,6 @@ module.exports = {
   getAllOrders,
   updateOrderStatus,
   getDashboardStats,
-  getAllCustomers
+  getAllCustomers,
+  deleteProduct
 };
