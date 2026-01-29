@@ -2,7 +2,7 @@ import { SignIn } from "@clerk/clerk-react";
 
 export default function Login() {
     return (
-       <div>
+       <div className="h-screen hero">
         <SignIn></SignIn>
        </div> 
     );
