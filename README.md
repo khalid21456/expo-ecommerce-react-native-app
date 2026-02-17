@@ -767,16 +767,3 @@ Users can create orders through:
 
 ISC
 
-## 👤 Author
-
-Your Name/Organization
-
-## 🤝 Contributing
-
-Contributions are welcome! Please follow the development workflow and ensure code quality standards.
-
----
-
-**Last Updated**: January 28, 2026
-
-For questions or issues, please create a GitHub issue or contact the development team.
